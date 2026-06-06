@@ -1,1 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flood Risk Mapping - Ifakara</title>
 
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+    <div class="logo">Flood Risk GIS</div>
+    <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#study">Study Area</a></li>
+        <li><a href="#analysis">Analysis</a></li>
+        <li><a href="#map">Map</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+    <div class="hero-content">
+        <h1>GIS-Based Flood Risk Mapping</h1>
+        <p>
+            Ifakara, Morogoro - Using GIS to identify flood prone areas
+            and support disaster risk management.
+        </p>
+        <a href="#map" class="btn">View Map</a>
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+    <h2 class="title">About the Project</h2>
+    <div class="grid">
+        <div class="card">
+            <h3>Problem</h3>
+            <p>Flooding affects houses, roads and livelihoods in Ifakara.</p>
+        </div>
+
+        <div class="card">
+            <h3>Objective</h3>
+            <p>To map flood risk zones using GIS techniques.</p>
+        </div>
+
+        <div class="card">
+            <h3>Solution</h3>
+            <p>Use DEM, river data and spatial analysis.</p>
+        </div>
+    </div>
+</section>
+
+<!-- STUDY AREA -->
+<section id="study">
+    <h2 class="title">Study Area</h2>
+    <div class="card">
+        Ifakara is located in Morogoro Region, Tanzania. It experiences seasonal flooding due to heavy rainfall and river overflow.
+    </div>
+</section>
+
+<!-- ANALYSIS -->
+<section id="analysis">
+    <h2 class="title">GIS Analysis</h2>
+    <div class="grid">
+        <div class="card">Elevation (DEM) Analysis</div>
+        <div class="card">River Buffer Analysis</div>
+        <div class="card">Risk Classification</div>
+    </div>
+</section>
+
+<!-- MAP -->
+<section>
+    <h2 class="title">OpenStreetMap - Flood Risk</h2>
+    <div id="map"></div>
+</section>
+
+<!-- RESULTS -->
+<section>
+    <h2 class="title">Results</h2>
+    <div class="grid">
+        <div class="card">🔴 High Risk Areas</div>
+        <div class="card">🟠 Medium Risk Areas</div>
+        <div class="card">🟢 Low Risk Areas</div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact">
+    <h2>Contact</h2>
+    <p>Email: Chrisbrian726@gmail.com</p>
+    <p>Phone: 0616340275</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <p>© 2026 Flood Risk GIS Project | Breezy Callisto</p>
+</footer>
+
+<!-- MAP SCRIPT -->
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<script>
+var map = L.map('map').setView([-8.1333, 36.6833], 12);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap'
+}).addTo(map);
+
+// Ifakara marker
+L.marker([-8.1333, 36.6833]).addTo(map)
+.bindPopup("Ifakara Town - Study Area");
+
+// Flood zones
+L.circle([-8.1333, 36.6833], {
+    color: 'red',
+    fillColor: 'red',
+    fillOpacity: 0.3,
+    radius: 3000
+}).addTo(map).bindPopup("High Risk Zone");
+
+L.circle([-8.1200, 36.7000], {
+    color: 'orange',
+    fillColor: 'orange',
+    fillOpacity: 0.3,
+    radius: 2000
+}).addTo(map).bindPopup("Medium Risk Zone");
+
+L.circle([-8.1500, 36.6500], {
+    color: 'green',
+    fillColor: 'green',
+    fillOpacity: 0.3,
+    radius: 1500
+}).addTo(map).bindPopup("Low Risk Zone");
+</script>
+
+</body>
+</html>
