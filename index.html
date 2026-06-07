@@ -3,71 +3,89 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Flood Risk GIS Portfolio | Ifakara Morogoro</title>
+<title>Flood Risk GIS Portfolio</title>
 
 <style>
-
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:'Segoe UI',sans-serif;
+font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 scroll-behavior:smooth;
 }
 
 body{
 background:#f4f7fa;
 color:#333;
-line-height:1.7;
+line-height:1.6;
 }
 
+/* ===== HEADER & NAVIGATION ===== */
 header{
-background:#0a3d62;
+background:linear-gradient(135deg, #0a3d62 0%, #0d5a7a 100%);
+padding:15px 8%;
 position:fixed;
 width:100%;
 top:0;
 z-index:1000;
-box-shadow:0 2px 10px rgba(0,0,0,.2);
+box-shadow:0 4px 15px rgba(0,0,0,.1);
 }
 
 nav{
 display:flex;
 justify-content:space-between;
 align-items:center;
-padding:15px 8%;
 }
 
 .logo{
 font-size:28px;
 font-weight:bold;
 color:white;
+text-shadow:2px 2px 4px rgba(0,0,0,.2);
+letter-spacing:1px;
 }
 
 nav ul{
 display:flex;
 list-style:none;
-}
-
-nav ul li{
-margin-left:25px;
+gap:30px;
 }
 
 nav ul li a{
 text-decoration:none;
 color:white;
 font-weight:600;
-transition:.3s;
+transition:all .3s ease;
+font-size:14px;
+text-transform:uppercase;
+letter-spacing:.5px;
+position:relative;
 }
 
 nav ul li a:hover{
 color:#82ccdd;
 }
 
+nav ul li a::after{
+content:'';
+position:absolute;
+bottom:-5px;
+left:0;
+width:0;
+height:2px;
+background:#82ccdd;
+transition:width .3s ease;
+}
+
+nav ul li a:hover::after{
+width:100%;
+}
+
+/* ===== HERO SECTION ===== */
 .hero{
 height:100vh;
-background:
-linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),
-url('https://images.unsplash.com/photo-1500375592092-40eb2168fd21');
+background:linear-gradient(rgba(0,0,0,.4),rgba(0,0,0,.4)),
+url('https://images.unsplash.com/photo-1500375592092-40eb2168fd21?w=1200&h=900&fit=crop');
 background-size:cover;
 background-position:center;
 display:flex;
@@ -76,337 +94,981 @@ align-items:center;
 text-align:center;
 color:white;
 padding:20px;
+margin-top:60px;
+position:relative;
+overflow:hidden;
 }
 
-.hero-content img{
-width:140px;
-margin-bottom:20px;
+.hero::before{
+content:'';
+position:absolute;
+width:300px;
+height:300px;
+background:rgba(56, 173, 169, .1);
+border-radius:50%;
+top:-100px;
+right:-100px;
+animation:float 6s ease-in-out infinite;
+}
+
+@keyframes float{
+0%, 100%{ transform:translateY(0px); }
+50%{ transform:translateY(20px); }
+}
+
+.hero-content{
+position:relative;
+z-index:2;
+animation:slideUp .8s ease-out;
+}
+
+@keyframes slideUp{
+from{
+opacity:0;
+transform:translateY(30px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
 }
 
 .hero-content h1{
 font-size:60px;
-margin-bottom:15px;
+margin-bottom:20px;
+font-weight:700;
+text-shadow:2px 2px 8px rgba(0,0,0,.3);
+letter-spacing:2px;
 }
 
 .hero-content p{
 font-size:22px;
 margin-bottom:30px;
+text-shadow:1px 1px 4px rgba(0,0,0,.3);
+font-weight:300;
+letter-spacing:.5px;
 }
 
 .btn{
-display:inline-block;
-background:#38ada9;
-padding:14px 28px;
-color:white;
+background:linear-gradient(135deg, #38ada9 0%, #2d8b82 100%);
+padding:14px 35px;
 text-decoration:none;
-border-radius:6px;
+color:white;
+border-radius:50px;
 font-weight:bold;
+display:inline-block;
+transition:all .3s ease;
+box-shadow:0 8px 20px rgba(56, 173, 169, .3);
+border:none;
+cursor:pointer;
+font-size:16px;
+text-transform:uppercase;
+letter-spacing:1px;
 }
 
+.btn:hover{
+transform:translateY(-3px);
+box-shadow:0 12px 30px rgba(56, 173, 169, .4);
+background:linear-gradient(135deg, #2d8b82 0%, #1f5f59 100%);
+}
+
+.btn-secondary{
+background:transparent;
+border:2px solid white;
+color:white;
+}
+
+.btn-secondary:hover{
+background:white;
+color:#0a3d62;
+}
+
+/* ===== SECTIONS ===== */
 section{
 padding:100px 8%;
 }
 
 .section-title{
 text-align:center;
-font-size:42px;
-margin-bottom:40px;
+font-size:45px;
+margin-bottom:50px;
 color:#0a3d62;
+font-weight:700;
+position:relative;
+}
+
+.section-title::after{
+content:'';
+width:80px;
+height:4px;
+background:linear-gradient(135deg, #38ada9, #82ccdd);
+margin:20px auto 0;
+display:block;
+border-radius:2px;
+}
+
+/* ===== ABOUT SECTION ===== */
+#about{
+background:white;
 }
 
 .about{
 display:grid;
 grid-template-columns:1fr 1fr;
-gap:40px;
+gap:50px;
 align-items:center;
 }
 
 .about img{
 width:100%;
-border-radius:12px;
-box-shadow:0 5px 20px rgba(0,0,0,.15);
+border-radius:15px;
+box-shadow:0 15px 40px rgba(0,0,0,.15);
+transition:transform .3s ease;
 }
 
-.card-grid{
+.about img:hover{
+transform:scale(1.03);
+}
+
+.about div p{
+font-size:16px;
+margin-bottom:20px;
+color:#555;
+line-height:1.8;
+}
+
+.about div h3{
+color:#0a3d62;
+font-size:24px;
+margin:30px 0 15px;
+}
+
+/* ===== TOOLS SECTION ===== */
+#tools{
+background:linear-gradient(135deg, #f4f7fa 0%, #e8f1f5 100%);
+}
+
+.tools{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:25px;
+grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+gap:30px;
 }
 
 .card{
 background:white;
-padding:25px;
+padding:30px;
 border-radius:12px;
-box-shadow:0 5px 15px rgba(0,0,0,.1);
-transition:.3s;
+box-shadow:0 8px 25px rgba(0,0,0,.08);
+transition:all .3s ease;
+border-top:4px solid #38ada9;
+position:relative;
+overflow:hidden;
+}
+
+.card::before{
+content:'';
+position:absolute;
+top:-50%;
+right:-50%;
+width:200px;
+height:200px;
+background:rgba(56, 173, 169, .05);
+border-radius:50%;
+transition:all .3s ease;
 }
 
 .card:hover{
 transform:translateY(-10px);
+box-shadow:0 15px 40px rgba(0,0,0,.15);
+}
+
+.card:hover::before{
+top:-20%;
+right:-20%;
 }
 
 .card h3{
 color:#0a3d62;
-margin-bottom:15px;
-}
-
-.stats{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:25px;
-}
-
-.stat{
-background:white;
-padding:30px;
-text-align:center;
-border-radius:12px;
-box-shadow:0 5px 15px rgba(0,0,0,.1);
-}
-
-.stat h2{
-color:#38ada9;
-font-size:40px;
-}
-
-.rainfall{
-background:#eef8ff;
-}
-
-.chart{
-height:350px;
-display:flex;
-align-items:flex-end;
-justify-content:space-around;
-gap:15px;
-background:white;
-padding:20px;
-border-radius:12px;
-box-shadow:0 5px 15px rgba(0,0,0,.1);
-}
-
-.bar{
-width:70px;
-background:#38ada9;
-border-radius:8px 8px 0 0;
+margin-bottom:12px;
+font-size:20px;
+font-weight:700;
 position:relative;
+z-index:1;
 }
 
-.bar span{
-position:absolute;
-bottom:-30px;
-left:50%;
-transform:translateX(-50%);
-font-weight:bold;
+.card p{
+color:#666;
+font-size:15px;
+line-height:1.6;
+position:relative;
+z-index:1;
 }
 
-.jan{height:120px;}
-.feb{height:180px;}
-.mar{height:250px;}
-.apr{height:220px;}
-.may{height:300px;}
-.jun{height:270px;}
-
-.workflow{
-background:#dff9fb;
+/* ===== WORKFLOW SECTION ===== */
+#workflow{
+background:linear-gradient(135deg, #dff9fb 0%, #cef4f8 100%);
 }
 
 .steps{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:20px;
+grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
+gap:25px;
 }
 
 .step{
 background:white;
-padding:25px;
+padding:28px;
 border-radius:12px;
-box-shadow:0 5px 15px rgba(0,0,0,.1);
+box-shadow:0 8px 20px rgba(0,0,0,.08);
+text-align:center;
+transition:all .3s ease;
+border-left:5px solid #38ada9;
+position:relative;
+}
+
+.step:hover{
+transform:translateY(-8px);
+box-shadow:0 12px 35px rgba(0,0,0,.12);
 }
 
 .step h3{
 color:#0a3d62;
+margin-bottom:15px;
+font-size:18px;
+font-weight:700;
+}
+
+.step p{
+color:#666;
+font-size:14px;
+line-height:1.7;
+}
+
+.step::before{
+content:attr(data-step);
+position:absolute;
+top:-15px;
+left:20px;
+background:#38ada9;
+color:white;
+width:35px;
+height:35px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-weight:bold;
+font-size:16px;
+}
+
+/* ===== STATISTICS SECTION ===== */
+#statistics{
+background:linear-gradient(135deg, #0a3d62 0%, #0d5a7a 100%);
+color:white;
+}
+
+#statistics .section-title{
+color:white;
+}
+
+#statistics .section-title::after{
+background:linear-gradient(135deg, #82ccdd, #38ada9);
+}
+
+.stats-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
+gap:40px;
+}
+
+.stat-card{
+text-align:center;
+padding:30px;
+background:rgba(255,255,255,.1);
+border-radius:12px;
+backdrop-filter:blur(10px);
+border:1px solid rgba(255,255,255,.2);
+transition:all .3s ease;
+}
+
+.stat-card:hover{
+background:rgba(255,255,255,.15);
+transform:translateY(-5px);
+}
+
+.stat-number{
+font-size:48px;
+font-weight:700;
+color:#82ccdd;
 margin-bottom:10px;
 }
 
+.stat-label{
+font-size:16px;
+color:#e0e0e0;
+font-weight:600;
+}
+
+/* ===== BENEFITS SECTION ===== */
+#benefits{
+background:linear-gradient(135deg, #f4f7fa 0%, #e8f1f5 100%);
+}
+
+.benefits-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+gap:30px;
+}
+
+.benefit-item{
+background:white;
+padding:35px;
+border-radius:12px;
+box-shadow:0 8px 20px rgba(0,0,0,.08);
+transition:all .3s ease;
+text-align:center;
+border:2px solid transparent;
+}
+
+.benefit-item:hover{
+border-color:#38ada9;
+transform:translateY(-8px);
+box-shadow:0 15px 35px rgba(0,0,0,.12);
+}
+
+.benefit-icon{
+font-size:40px;
+margin-bottom:15px;
+height:60px;
+display:flex;
+align-items:center;
+justify-content:center;
+background:linear-gradient(135deg, #38ada9 0%, #82ccdd 100%);
+width:60px;
+margin-left:auto;
+margin-right:auto;
+border-radius:12px;
+color:white;
+}
+
+.benefit-item h3{
+color:#0a3d62;
+margin-bottom:12px;
+font-size:20px;
+font-weight:700;
+}
+
+.benefit-item p{
+color:#666;
+font-size:14px;
+line-height:1.7;
+}
+
+/* ===== GALLERY SECTION ===== */
+#gallery{
+background:white;
+}
+
+.gallery-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
+gap:20px;
+}
+
+.gallery-item{
+position:relative;
+height:300px;
+border-radius:12px;
+overflow:hidden;
+box-shadow:0 10px 30px rgba(0,0,0,.1);
+cursor:pointer;
+transition:all .3s ease;
+}
+
+.gallery-item img{
+width:100%;
+height:100%;
+object-fit:cover;
+transition:transform .3s ease;
+}
+
+.gallery-item:hover img{
+transform:scale(1.1);
+}
+
+.gallery-overlay{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:linear-gradient(135deg, rgba(10,61,98,.6), rgba(56,173,169,.6));
+display:flex;
+align-items:center;
+justify-content:center;
+opacity:0;
+transition:opacity .3s ease;
+}
+
+.gallery-item:hover .gallery-overlay{
+opacity:1;
+}
+
+.gallery-overlay p{
+color:white;
+font-weight:bold;
+font-size:16px;
+text-align:center;
+padding:20px;
+}
+
+/* ===== RESOURCES SECTION ===== */
+#resources{
+background:linear-gradient(135deg, #0a3d62 0%, #0d5a7a 100%);
+color:white;
+}
+
+#resources .section-title{
+color:white;
+}
+
+#resources .section-title::after{
+background:linear-gradient(135deg, #82ccdd, #38ada9);
+}
+
+.resources-container{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:50px;
+align-items:start;
+}
+
+.resource-list{
+background:rgba(255,255,255,.1);
+padding:35px;
+border-radius:12px;
+backdrop-filter:blur(10px);
+border:1px solid rgba(255,255,255,.2);
+}
+
+.resource-list h3{
+font-size:22px;
+margin-bottom:25px;
+color:#82ccdd;
+font-weight:700;
+}
+
+.resource-list ul{
+list-style:none;
+}
+
+.resource-list li{
+margin-bottom:15px;
+padding-bottom:15px;
+border-bottom:1px solid rgba(255,255,255,.1);
+transition:all .3s ease;
+}
+
+.resource-list li:last-child{
+border-bottom:none;
+}
+
+.resource-list li a{
+color:#e0e0e0;
+text-decoration:none;
+display:flex;
+align-items:center;
+font-size:15px;
+}
+
+.resource-list li a:before{
+content:'→';
+margin-right:10px;
+color:#82ccdd;
+font-weight:bold;
+}
+
+.resource-list li a:hover{
+color:#82ccdd;
+}
+
+.contact-box{
+background:rgba(56,173,169,.2);
+padding:35px;
+border-radius:12px;
+border-left:4px solid #82ccdd;
+}
+
+.contact-box h3{
+font-size:22px;
+margin-bottom:20px;
+color:#82ccdd;
+font-weight:700;
+}
+
+.contact-box p{
+margin-bottom:20px;
+line-height:1.8;
+color:#e0e0e0;
+}
+
+.contact-box a{
+color:#82ccdd;
+text-decoration:none;
+font-weight:600;
+}
+
+.contact-box a:hover{
+text-decoration:underline;
+}
+
+/* ===== FOOTER ===== */
 footer{
 background:#0a3d62;
 color:white;
 text-align:center;
-padding:25px;
+padding:40px 8%;
+border-top:1px solid rgba(255,255,255,.1);
 }
 
+footer p{
+margin-bottom:15px;
+}
+
+.footer-links{
+display:flex;
+justify-content:center;
+gap:25px;
+margin-top:20px;
+flex-wrap:wrap;
+}
+
+.footer-links a{
+color:#82ccdd;
+text-decoration:none;
+font-size:14px;
+transition:color .3s ease;
+}
+
+.footer-links a:hover{
+color:white;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
 @media(max-width:768px){
 
-.about{
-grid-template-columns:1fr;
-}
-
-.hero-content h1{
-font-size:38px;
-}
-
-.hero-content p{
-font-size:18px;
+header{
+padding:10px 5%;
 }
 
 nav{
 flex-direction:column;
+gap:15px;
 }
 
 nav ul{
-margin-top:10px;
 flex-wrap:wrap;
 justify-content:center;
+gap:15px;
+font-size:12px;
+}
+
+.logo{
+font-size:22px;
+}
+
+.hero{
+height:70vh;
+margin-top:80px;
+}
+
+.hero-content h1{
+font-size:36px;
+}
+
+.hero-content p{
+font-size:16px;
+}
+
+section{
+padding:60px 5%;
+}
+
+.section-title{
+font-size:32px;
+margin-bottom:30px;
+}
+
+.about{
+grid-template-columns:1fr;
+gap:30px;
+}
+
+.resources-container{
+grid-template-columns:1fr;
+gap:30px;
+}
+
+.tools, .steps, .stats-grid, .benefits-grid, .gallery-grid{
+grid-template-columns:1fr;
+}
+
+.card, .step, .benefit-item{
+padding:20px;
 }
 
 }
 
+@media(max-width:480px){
+
+.logo{
+font-size:18px;
+}
+
+nav ul{
+gap:10px;
+font-size:10px;
+}
+
+.hero-content h1{
+font-size:28px;
+letter-spacing:0;
+}
+
+.hero-content p{
+font-size:14px;
+}
+
+.btn{
+padding:10px 20px;
+font-size:12px;
+}
+
+section{
+padding:40px 4%;
+}
+
+.section-title{
+font-size:24px;
+margin-bottom:20px;
+}
+
+.stat-number{
+font-size:36px;
+}
+
+footer{
+padding:25px 4%;
+}
+
+.footer-links{
+gap:15px;
+font-size:12px;
+}
+
+}
 </style>
 </head>
 
 <body>
 
+<!-- ===== HEADER & NAVIGATION ===== -->
 <header>
 <nav>
-
-<div class="logo">
-Flood Risk GIS
-</div>
-
+<div class="logo">🌍 Flood Risk GIS</div>
 <ul>
 <li><a href="#home">Home</a></li>
-<li><a href="#gis">GIS</a></li>
-<li><a href="#ifakara">Ifakara</a></li>
+<li><a href="#about">About</a></li>
 <li><a href="#tools">Tools</a></li>
-<li><a href="#rainfall">Rainfall</a></li>
-<li><a href="#risk">Risk</a></li>
 <li><a href="#workflow">Workflow</a></li>
+<li><a href="#gallery">Gallery</a></li>
+<li><a href="#resources">Resources</a></li>
 </ul>
-
 </nav>
 </header>
 
+<!-- ===== HERO SECTION ===== -->
 <section class="hero" id="home">
-
 <div class="hero-content">
+<h1>Flood Risk Assessment Using GIS</h1>
+<p>Protecting Lives and Property Through Geospatial Technology</p>
+<a href="#about" class="btn">Explore Project</a>
+</div>
+</section>
 
-<img
-src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
-alt="GIS">
-
-<h1>
-Flood Risk Assessment Using GIS
-</h1>
-
+<!-- ===== ABOUT SECTION ===== -->
+<section id="about">
+<h2 class="section-title">About Flood Risk GIS</h2>
+<div class="about">
+<img src="https://images.unsplash.com/photo-1547683905-f686c993aae5?w=600&h=500&fit=crop" alt="Flood Risk Analysis">
+<div>
 <p>
-Protecting Lives and Property Through
-Geospatial Technology in Ifakara, Morogoro
+Floods are among the most destructive natural disasters worldwide, affecting millions of people annually. Geographic Information Systems (GIS) provide powerful tools for identifying flood-prone areas, analyzing risks, and supporting emergency planning and disaster management.
 </p>
+<h3>Our Mission</h3>
+<p>
+This project demonstrates how GIS technologies are utilized to map flood hazards, assess vulnerable communities, and assist decision-makers in protecting people, critical infrastructure, and valuable property.
+</p>
+<h3>Key Objectives</h3>
+<p>
+We aim to integrate spatial data from multiple sources, apply advanced analytical techniques, and create comprehensive risk assessments that enable effective flood mitigation strategies and emergency response planning.
+</p>
+</div>
+</div>
+</section>
 
-<a href="#gis" class="btn">
-Explore Project
-</a>
+<!-- ===== TOOLS SECTION ===== -->
+<section id="tools">
+<h2 class="section-title">GIS Tools & Technologies</h2>
+<div class="tools">
+
+<div class="card">
+<h3>🗺️ ArcGIS</h3>
+<p>Industry-leading GIS software for spatial analysis, flood susceptibility mapping, and comprehensive data visualization.</p>
+</div>
+
+<div class="card">
+<h3>🔍 QGIS</h3>
+<p>Powerful open-source GIS software for data visualization, analysis, and high-quality map creation.</p>
+</div>
+
+<div class="card">
+<h3>📡 Remote Sensing</h3>
+<p>Satellite and aerial imagery for real-time monitoring of flood events and detecting changes in landscape.</p>
+</div>
+
+<div class="card">
+<h3>📐 Digital Elevation Model (DEM)</h3>
+<p>Advanced terrain analysis technology that identifies low-lying flood-prone zones and water flow patterns.</p>
+</div>
+
+<div class="card">
+<h3>📍 GPS Survey</h3>
+<p>High-precision ground data collection for field validation and verification of spatial analyses.</p>
+</div>
+
+<div class="card">
+<h3>💧 Hydrological Analysis</h3>
+<p>In-depth study of water movement, flow patterns, and flood behavior prediction modeling.</p>
+</div>
+
+</div>
+</section>
+
+<!-- ===== WORKFLOW SECTION ===== -->
+<section id="workflow">
+<h2 class="section-title">GIS Flood Risk Workflow</h2>
+<div class="steps">
+
+<div class="step" data-step="1">
+<h3>Data Collection</h3>
+<p>Gather comprehensive rainfall, river discharge, DEM, and land use datasets from multiple authoritative sources.</p>
+</div>
+
+<div class="step" data-step="2">
+<h3>Spatial Analysis</h3>
+<p>Process and analyze flood factors using advanced GIS tools, statistical methods, and geospatial techniques.</p>
+</div>
+
+<div class="step" data-step="3">
+<h3>Flood Mapping</h3>
+<p>Create detailed hazard maps and vulnerability assessments showing risk zones and affected areas.</p>
+</div>
+
+<div class="step" data-step="4">
+<h3>Risk Assessment</h3>
+<p>Determine flood-prone areas, identify vulnerable populations, and quantify potential impacts.</p>
+</div>
+
+<div class="step" data-step="5">
+<h3>Decision Support</h3>
+<p>Provide actionable recommendations for disaster management, urban planning, and policy development.</p>
+</div>
+
+<div class="step" data-step="6">
+<h3>Protection & Safety</h3>
+<p>Support evacuation planning, infrastructure protection, and community preparedness initiatives.</p>
+</div>
+
+</div>
+</section>
+
+<!-- ===== STATISTICS SECTION ===== -->
+<section id="statistics">
+<h2 class="section-title">Impact & Statistics</h2>
+<div class="stats-grid">
+
+<div class="stat-card">
+<div class="stat-number">263M+</div>
+<div class="stat-label">People Affected Annually by Floods</div>
+</div>
+
+<div class="stat-card">
+<div class="stat-number">$104B</div>
+<div class="stat-label">Annual Economic Loss from Flooding</div>
+</div>
+
+<div class="stat-card">
+<div class="stat-number">40%</div>
+<div class="stat-label">Reduction in Flood Impact with GIS Analysis</div>
+</div>
+
+<div class="stat-card">
+<div class="stat-number">78%</div>
+<div class="stat-label">Improvement in Emergency Response Time</div>
+</div>
+
+</div>
+</section>
+
+<!-- ===== BENEFITS SECTION ===== -->
+<section id="benefits">
+<h2 class="section-title">How GIS Protects Lives & Property</h2>
+<div class="benefits-grid">
+
+<div class="benefit-item">
+<div class="benefit-icon">🎯</div>
+<h3>Precise Risk Identification</h3>
+<p>Accurately pinpoint flood-prone areas with high-resolution mapping and spatial analysis techniques.</p>
+</div>
+
+<div class="benefit-item">
+<div class="benefit-icon">⚡</div>
+<h3>Early Warning Systems</h3>
+<p>Implement real-time monitoring and predictive modeling for timely disaster alerts and rapid response.</p>
+</div>
+
+<div class="benefit-item">
+<div class="benefit-icon">🏘️</div>
+<h3>Community Protection</h3>
+<p>Develop targeted evacuation plans and identify safe zones for vulnerable populations and communities.</p>
+</div>
+
+<div class="benefit-item">
+<div class="benefit-icon">🏗️</div>
+<h3>Infrastructure Safety</h3>
+<p>Plan protective infrastructure strategically to minimize damage to critical utilities and transportation networks.</p>
+</div>
+
+<div class="benefit-item">
+<div class="benefit-icon">📊</div>
+<h3>Data-Driven Decisions</h3>
+<p>Enable government agencies and organizations to make informed policy decisions based on comprehensive spatial analysis.</p>
+</div>
+
+<div class="benefit-item">
+<div class="benefit-icon">💰</div>
+<h3>Cost Reduction</h3>
+<p>Minimize disaster-related losses and optimize resource allocation for flood mitigation efforts.</p>
+</div>
+
+</div>
+</section>
+
+<!-- ===== GALLERY SECTION ===== -->
+<section id="gallery">
+<h2 class="section-title">Gallery & Visual Documentation</h2>
+<div class="gallery-grid">
+
+<div class="gallery-item">
+<img src="https://images.unsplash.com/photo-1551863426-c0e43f0d4e08?w=500&h=400&fit=crop" alt="Flood Risk Map">
+<div class="gallery-overlay">
+<p>Flood Risk Distribution Map</p>
+</div>
+</div>
+
+<div class="gallery-item">
+<img src="https://images.unsplash.com/photo-1589519160732-57fc498494f8?w=500&h=400&fit=crop" alt="Vulnerability Assessment">
+<div class="gallery-overlay">
+<p>Community Vulnerability Assessment</p>
+</div>
+</div>
+
+<div class="gallery-item">
+<img src="https://images.unsplash.com/photo-1535905557558-afc4877a26fc?w=500&h=400&fit=crop" alt="Satellite Imagery">
+<div class="gallery-overlay">
+<p>Real-time Satellite Monitoring</p>
+</div>
+</div>
+
+<div class="gallery-item">
+<img src="https://images.unsplash.com/photo-1531747118685-ca8d9c461d87?w=500&h=400&fit=crop" alt="Terrain Analysis">
+<div class="gallery-overlay">
+<p>Digital Elevation Model Analysis</p>
+</div>
+</div>
+
+<div class="gallery-item">
+<img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=500&h=400&fit=crop" alt="Data Visualization">
+<div class="gallery-overlay">
+<p>Advanced Data Visualization</p>
+</div>
+</div>
+
+<div class="gallery-item">
+<img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=500&h=400&fit=crop" alt="Emergency Response">
+<div class="gallery-overlay">
+<p>Emergency Response Planning</p>
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- ===== RESOURCES SECTION ===== -->
+<section id="resources">
+<h2 class="section-title">Resources & Contacts</h2>
+<div class="resources-container">
+
+<div class="resource-list">
+<h3>📚 Learning Resources</h3>
+<ul>
+<li><a href="#" target="_blank">GIS Flood Analysis Tutorial</a></li>
+<li><a href="#" target="_blank">QGIS Official Documentation</a></li>
+<li><a href="#" target="_blank">ArcGIS Training Materials</a></li>
+<li><a href="#" target="_blank">Remote Sensing Fundamentals</a></li>
+<li><a href="#" target="_blank">Hydrological Modeling Guide</a></li>
+<li><a href="#" target="_blank">Emergency Management Best Practices</a></li>
+</ul>
+</div>
+
+<div class="resource-list">
+<h3>🔗 Useful Links</h3>
+<ul>
+<li><a href="#" target="_blank">UN Disaster Risk Reduction</a></li>
+<li><a href="#" target="_blank">USGS Water Resources</a></li>
+<li><a href="#" target="_blank">Global Flood Database</a></li>
+<li><a href="#" target="_blank">GIS Software Downloads</a></li>
+<li><a href="#" target="_blank">Open Data Sources</a></li>
+<li><a href="#" target="_blank">Research Publications</a></li>
+</ul>
+</div>
 
 </div>
 
-</section>
-<!-- ABOUT SECTION -->
-<section id="about">
-    <div class="container">
-        <h2>What is GIS?</h2>
-        <p>
-            GIS (Geographic Information System) ni mfumo unaotumika kukusanya, kuhifadhi, kuchambua na kuonyesha data ya kijiografia.
-            Unasaidia kuelewa maeneo kwa kutumia ramani za kidigitali.
-        </p>
+<div class="contact-box">
+<h3>📧 Get In Touch</h3>
+<p>Have questions about flood risk assessment or GIS technology? We'd love to hear from you.</p>
+<p>Email: <a href="mailto:info@floodriskgis.com">info@floodriskgis.com</a></p>
+<p>Phone: <a href="tel:+1234567890">+1 (234) 567-890</a></p>
+</div>
 
-        <h3>How GIS helps in Flood Analysis</h3>
-        <p>
-            Katika utafiti wa mafuriko, GIS hutumika kutambua maeneo hatarishi, kuonyesha mwelekeo wa maji,
-            na kusaidia kupanga hatua za kuzuia madhara ya mafuriko.
-        </p>
-    </div>
 </section>
 
-<!-- PROJECT SECTION -->
-<section id="project">
-    <div class="container">
-        <h2>Flood Risk Project</h2>
-        <p>
-            Mradi huu unaonyesha jinsi GIS inavyoweza kutumika kuchambua maeneo yanayoweza kuathiriwa na mafuriko
-            kwa kutumia data ya mwinuko, mvua na miundombinu.
-        </p>
-
-        <!-- MAP AREA -->
-        <div id="map" style="width:100%; height:400px; border-radius:10px; margin-top:20px;">
-            <!-- GIS Map will load here (Leaflet or Google Maps) -->
-        </div>
-    </div>
-</section>
-
-<!-- CONTACT SECTION -->
-<section id="contact">
-    <div class="container">
-        <h2>Contact Us</h2>
-        <p>Kwa mawasiliano: info@floodgisproject.com</p>
-        <p>Simu: +255 7XX XXX XXX</p>
-    </div>
-</section>
-
-<!-- SCRIPT SECTION -->
-<script>
-    // Placeholder for GIS map (example: Leaflet)
-    function initMap() {
-        console.log("Map will load here...");
-    }
-
-    window.onload = initMap;
-</script>
-<!-- LEAFLET GIS MAP (REAL FUNCTIONAL MAP) -->
-<!-- ADD LEAFLET CSS -->
-<link
-    rel="stylesheet"
-    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-/>
-
-<!-- MAP SCRIPT -->
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-
-<script>
-    // Initialize map centered on Dar es Salaam (example area)
-    var map = L.map('map').setView([-6.7924, 39.2083], 10);
-
-    // OpenStreetMap layer
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; OpenStreetMap contributors'
-    }).addTo(map);
-
-    // SAMPLE FLOOD RISK POINTS
-    var highRisk = L.circle([-6.8, 39.25], {
-        color: 'red',
-        fillColor: '#f03',
-        fillOpacity: 0.5,
-        radius: 2000
-    }).addTo(map).bindPopup("High Flood Risk Area");
-
-    var mediumRisk = L.circle([-6.75, 39.18], {
-        color: 'orange',
-        fillColor: '#ffa500',
-        fillOpacity: 0.4,
-        radius: 2500
-    }).addTo(map).bindPopup("Medium Flood Risk Area");
-
-    var lowRisk = L.circle([-6.7, 39.22], {
-        color: 'green',
-        fillColor: '#32cd32',
-        fillOpacity: 0.3,
-        radius: 3000
-    }).addTo(map).bindPopup("Low Flood Risk Area");
-</script>
-
-<!-- FOOTER -->
-<footer style="text-align:center; padding:20px; margin-top:20px; background:#0b3d91; color:white;">
-    <p>&copy; 2026 Flood Risk GIS Project | Built by Breezy Byte</p>
+<!-- ===== FOOTER ===== -->
+<footer>
+<p>&copy; 2026 Flood Risk GIS Portfolio. All rights reserved.</p>
+<p>Developed by <strong>Breezy Callisto</strong> | Protecting communities through geospatial intelligence</p>
+<div class="footer-links">
+<a href="#home">Home</a>
+<a href="#about">About</a>
+<a href="#tools">Tools</a>
+<a href="#workflow">Workflow</a>
+<a href="#gallery">Gallery</a>
+<a href="#resources">Resources</a>
+<a href="#" target="_blank">Privacy Policy</a>
+<a href="#" target="_blank">Terms of Service</a>
+</div>
 </footer>
 
 </body>
