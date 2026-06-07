@@ -3,35 +3,38 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Flood Risk GIS Portfolio</title>
+<title>Flood Risk GIS Portfolio | Ifakara Morogoro</title>
 
 <style>
+
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Arial, sans-serif;
+font-family:'Segoe UI',sans-serif;
 scroll-behavior:smooth;
 }
 
 body{
 background:#f4f7fa;
 color:#333;
+line-height:1.7;
 }
 
 header{
 background:#0a3d62;
-padding:15px 8%;
 position:fixed;
 width:100%;
 top:0;
 z-index:1000;
+box-shadow:0 2px 10px rgba(0,0,0,.2);
 }
 
 nav{
 display:flex;
 justify-content:space-between;
 align-items:center;
+padding:15px 8%;
 }
 
 .logo{
@@ -52,7 +55,7 @@ margin-left:25px;
 nav ul li a{
 text-decoration:none;
 color:white;
-font-weight:bold;
+font-weight:600;
 transition:.3s;
 }
 
@@ -63,7 +66,7 @@ color:#82ccdd;
 .hero{
 height:100vh;
 background:
-linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.5)),
+linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),
 url('https://images.unsplash.com/photo-1500375592092-40eb2168fd21');
 background-size:cover;
 background-position:center;
@@ -75,9 +78,14 @@ color:white;
 padding:20px;
 }
 
+.hero-content img{
+width:140px;
+margin-bottom:20px;
+}
+
 .hero-content h1{
 font-size:60px;
-margin-bottom:20px;
+margin-bottom:15px;
 }
 
 .hero-content p{
@@ -86,11 +94,12 @@ margin-bottom:30px;
 }
 
 .btn{
+display:inline-block;
 background:#38ada9;
-padding:12px 25px;
-text-decoration:none;
+padding:14px 28px;
 color:white;
-border-radius:5px;
+text-decoration:none;
+border-radius:6px;
 font-weight:bold;
 }
 
@@ -100,7 +109,7 @@ padding:100px 8%;
 
 .section-title{
 text-align:center;
-font-size:40px;
+font-size:42px;
 margin-bottom:40px;
 color:#0a3d62;
 }
@@ -114,10 +123,11 @@ align-items:center;
 
 .about img{
 width:100%;
-border-radius:10px;
+border-radius:12px;
+box-shadow:0 5px 20px rgba(0,0,0,.15);
 }
 
-.tools{
+.card-grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
 gap:25px;
@@ -126,7 +136,7 @@ gap:25px;
 .card{
 background:white;
 padding:25px;
-border-radius:10px;
+border-radius:12px;
 box-shadow:0 5px 15px rgba(0,0,0,.1);
 transition:.3s;
 }
@@ -140,6 +150,63 @@ color:#0a3d62;
 margin-bottom:15px;
 }
 
+.stats{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:25px;
+}
+
+.stat{
+background:white;
+padding:30px;
+text-align:center;
+border-radius:12px;
+box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+.stat h2{
+color:#38ada9;
+font-size:40px;
+}
+
+.rainfall{
+background:#eef8ff;
+}
+
+.chart{
+height:350px;
+display:flex;
+align-items:flex-end;
+justify-content:space-around;
+gap:15px;
+background:white;
+padding:20px;
+border-radius:12px;
+box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+.bar{
+width:70px;
+background:#38ada9;
+border-radius:8px 8px 0 0;
+position:relative;
+}
+
+.bar span{
+position:absolute;
+bottom:-30px;
+left:50%;
+transform:translateX(-50%);
+font-weight:bold;
+}
+
+.jan{height:120px;}
+.feb{height:180px;}
+.mar{height:250px;}
+.apr{height:220px;}
+.may{height:300px;}
+.jun{height:270px;}
+
 .workflow{
 background:#dff9fb;
 }
@@ -152,16 +219,21 @@ gap:20px;
 
 .step{
 background:white;
-padding:20px;
-border-radius:10px;
-box-shadow:0 5px 10px rgba(0,0,0,.1);
+padding:25px;
+border-radius:12px;
+box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+.step h3{
+color:#0a3d62;
+margin-bottom:10px;
 }
 
 footer{
 background:#0a3d62;
 color:white;
 text-align:center;
-padding:20px;
+padding:25px;
 }
 
 @media(max-width:768px){
@@ -174,6 +246,10 @@ grid-template-columns:1fr;
 font-size:38px;
 }
 
+.hero-content p{
+font-size:18px;
+}
+
 nav{
 flex-direction:column;
 }
@@ -183,7 +259,9 @@ margin-top:10px;
 flex-wrap:wrap;
 justify-content:center;
 }
+
 }
+
 </style>
 </head>
 
@@ -191,132 +269,140 @@ justify-content:center;
 
 <header>
 <nav>
-<div class="logo">Flood Risk GIS</div>
+
+<div class="logo">
+Flood Risk GIS
+</div>
 
 <ul>
 <li><a href="#home">Home</a></li>
-<li><a href="#about">About</a></li>
-<li><a href="#tools">GIS Tools</a></li>
+<li><a href="#gis">GIS</a></li>
+<li><a href="#ifakara">Ifakara</a></li>
+<li><a href="#tools">Tools</a></li>
+<li><a href="#rainfall">Rainfall</a></li>
+<li><a href="#risk">Risk</a></li>
 <li><a href="#workflow">Workflow</a></li>
 </ul>
+
 </nav>
 </header>
 
 <section class="hero" id="home">
+
 <div class="hero-content">
-<h1>Flood Risk Assessment Using GIS</h1>
-<p>Protecting Lives and Property Through Geospatial Technology</p>
-<a href="#about" class="btn">Explore Project</a>
-</div>
-</section>
 
+<img
+src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
+alt="GIS">
+
+<h1>
+Flood Risk Assessment Using GIS
+</h1>
+
+<p>
+Protecting Lives and Property Through
+Geospatial Technology in Ifakara, Morogoro
+</p>
+
+<a href="#gis" class="btn">
+Explore Project
+</a>
+
+</div>
+
+</section>
+<!-- ABOUT SECTION -->
 <section id="about">
-<h2 class="section-title">About the Project</h2>
+    <div class="container">
+        <h2>What is GIS?</h2>
+        <p>
+            GIS (Geographic Information System) ni mfumo unaotumika kukusanya, kuhifadhi, kuchambua na kuonyesha data ya kijiografia.
+            Unasaidia kuelewa maeneo kwa kutumia ramani za kidigitali.
+        </p>
 
-<div class="about">
-
-<img src="https://images.unsplash.com/photo-1547683905-f686c993aae5" alt="Flood">
-
-<div>
-<p>
-Floods are among the most destructive natural disasters worldwide.
-Geographic Information Systems (GIS) provide powerful tools for
-identifying flood-prone areas, analyzing risks, and supporting
-emergency planning.
-</p>
-
-<br>
-
-<p>
-This project demonstrates how GIS technologies are used to map
-flood hazards, assess vulnerable communities, and assist decision
-makers in protecting people, infrastructure, and valuable property.
-</p>
-
-</div>
-
-</div>
+        <h3>How GIS helps in Flood Analysis</h3>
+        <p>
+            Katika utafiti wa mafuriko, GIS hutumika kutambua maeneo hatarishi, kuonyesha mwelekeo wa maji,
+            na kusaidia kupanga hatua za kuzuia madhara ya mafuriko.
+        </p>
+    </div>
 </section>
 
-<section id="tools">
-<h2 class="section-title">GIS Tools Used</h2>
+<!-- PROJECT SECTION -->
+<section id="project">
+    <div class="container">
+        <h2>Flood Risk Project</h2>
+        <p>
+            Mradi huu unaonyesha jinsi GIS inavyoweza kutumika kuchambua maeneo yanayoweza kuathiriwa na mafuriko
+            kwa kutumia data ya mwinuko, mvua na miundombinu.
+        </p>
 
-<div class="tools">
-
-<div class="card">
-<h3>ArcGIS</h3>
-<p>Spatial analysis and flood susceptibility mapping.</p>
-</div>
-
-<div class="card">
-<h3>QGIS</h3>
-<p>Open-source GIS software for data visualization and mapping.</p>
-</div>
-
-<div class="card">
-<h3>Remote Sensing</h3>
-<p>Satellite imagery helps monitor flood events and land changes.</p>
-</div>
-
-<div class="card">
-<h3>Digital Elevation Model</h3>
-<p>Terrain analysis identifies low-lying flood-prone zones.</p>
-</div>
-
-<div class="card">
-<h3>GPS Survey</h3>
-<p>Collecting accurate ground data for validation.</p>
-</div>
-
-<div class="card">
-<h3>Hydrological Analysis</h3>
-<p>Understanding water flow and flood behavior.</p>
-</div>
-
-</div>
+        <!-- MAP AREA -->
+        <div id="map" style="width:100%; height:400px; border-radius:10px; margin-top:20px;">
+            <!-- GIS Map will load here (Leaflet or Google Maps) -->
+        </div>
+    </div>
 </section>
 
-<section class="workflow" id="workflow">
-<h2 class="section-title">GIS Flood Risk Workflow</h2>
-
-<div class="steps">
-
-<div class="step">
-<h3>1. Data Collection</h3>
-<p>Gather rainfall, river, DEM and land use datasets.</p>
-</div>
-
-<div class="step">
-<h3>2. Spatial Analysis</h3>
-<p>Process flood factors using GIS tools and techniques.</p>
-</div>
-
-<div class="step">
-<h3>3. Flood Mapping</h3>
-<p>Create hazard and vulnerability maps.</p>
-</div>
-
-<div class="step">
-<h3>4. Risk Assessment</h3>
-<p>Determine areas and populations at risk.</p>
-</div>
-
-<div class="step">
-<h3>5. Decision Support</h3>
-<p>Provide recommendations for disaster management.</p>
-</div>
-
-<div class="step">
-<h3>6. Protection</h3>
-<p>Support evacuation planning and infrastructure safety.</p>
-</div>
-
-</div>
+<!-- CONTACT SECTION -->
+<section id="contact">
+    <div class="container">
+        <h2>Contact Us</h2>
+        <p>Kwa mawasiliano: info@floodgisproject.com</p>
+        <p>Simu: +255 7XX XXX XXX</p>
+    </div>
 </section>
 
-<footer>
-<p>Flood Risk GIS Portfolio | Developed by Breezy Callisto © 2026</p>
-</footer>
+<!-- SCRIPT SECTION -->
+<script>
+    // Placeholder for GIS map (example: Leaflet)
+    function initMap() {
+        console.log("Map will load here...");
+    }
 
-</body>
-</html>
+    window.onload = initMap;
+</script>
+<!-- LEAFLET GIS MAP (REAL FUNCTIONAL MAP) -->
+<!-- ADD LEAFLET CSS -->
+<link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+/>
+
+<!-- MAP SCRIPT -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+    // Initialize map centered on Dar es Salaam (example area)
+    var map = L.map('map').setView([-6.7924, 39.2083], 10);
+
+    // OpenStreetMap layer
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    // SAMPLE FLOOD RISK POINTS
+    var highRisk = L.circle([-6.8, 39.25], {
+        color: 'red',
+        fillColor: '#f03',
+        fillOpacity: 0.5,
+        radius: 2000
+    }).addTo(map).bindPopup("High Flood Risk Area");
+
+    var mediumRisk = L.circle([-6.75, 39.18], {
+        color: 'orange',
+        fillColor: '#ffa500',
+        fillOpacity: 0.4,
+        radius: 2500
+    }).addTo(map).bindPopup("Medium Flood Risk Area");
+
+    var lowRisk = L.circle([-6.7, 39.22], {
+        color: 'green',
+        fillColor: '#32cd32',
+        fillOpacity: 0.3,
+        radius: 3000
+    }).addTo(map).bindPopup("Low Flood Risk Area");
+</script>
+
+<!-- FOOTER -->
+<footer style="text-align:center;
