@@ -1,67 +1,322 @@
-<!-- NAVBAR -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flood Risk GIS Portfolio</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, sans-serif;
+scroll-behavior:smooth;
+}
+
+body{
+background:#f4f7fa;
+color:#333;
+}
+
+header{
+background:#0a3d62;
+padding:15px 8%;
+position:fixed;
+width:100%;
+top:0;
+z-index:1000;
+}
+
+nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.logo{
+font-size:28px;
+font-weight:bold;
+color:white;
+}
+
+nav ul{
+display:flex;
+list-style:none;
+}
+
+nav ul li{
+margin-left:25px;
+}
+
+nav ul li a{
+text-decoration:none;
+color:white;
+font-weight:bold;
+transition:.3s;
+}
+
+nav ul li a:hover{
+color:#82ccdd;
+}
+
+.hero{
+height:100vh;
+background:
+linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.5)),
+url('https://images.unsplash.com/photo-1500375592092-40eb2168fd21');
+background-size:cover;
+background-position:center;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+color:white;
+padding:20px;
+}
+
+.hero-content h1{
+font-size:60px;
+margin-bottom:20px;
+}
+
+.hero-content p{
+font-size:22px;
+margin-bottom:30px;
+}
+
+.btn{
+background:#38ada9;
+padding:12px 25px;
+text-decoration:none;
+color:white;
+border-radius:5px;
+font-weight:bold;
+}
+
+section{
+padding:100px 8%;
+}
+
+.section-title{
+text-align:center;
+font-size:40px;
+margin-bottom:40px;
+color:#0a3d62;
+}
+
+.about{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:40px;
+align-items:center;
+}
+
+.about img{
+width:100%;
+border-radius:10px;
+}
+
+.tools{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+}
+
+.card{
+background:white;
+padding:25px;
+border-radius:10px;
+box-shadow:0 5px 15px rgba(0,0,0,.1);
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-10px);
+}
+
+.card h3{
+color:#0a3d62;
+margin-bottom:15px;
+}
+
+.workflow{
+background:#dff9fb;
+}
+
+.steps{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+}
+
+.step{
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 5px 10px rgba(0,0,0,.1);
+}
+
+footer{
+background:#0a3d62;
+color:white;
+text-align:center;
+padding:20px;
+}
+
+@media(max-width:768px){
+
+.about{
+grid-template-columns:1fr;
+}
+
+.hero-content h1{
+font-size:38px;
+}
+
+nav{
+flex-direction:column;
+}
+
+nav ul{
+margin-top:10px;
+flex-wrap:wrap;
+justify-content:center;
+}
+}
+</style>
+</head>
+
+<body>
+
+<header>
 <nav>
-    <div class="logo">Flood Risk GIS</div>
-    <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About GIS</a></li>
-        <li><a href="#project">Project</a></li>
-        <li><a href="#map">Map</a></li>
-        <li><a href="#contact">Contact</a></li>
-    </ul>
+<div class="logo">Flood Risk GIS</div>
+
+<ul>
+<li><a href="#home">Home</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#tools">GIS Tools</a></li>
+<li><a href="#workflow">Workflow</a></li>
+</ul>
 </nav>
+</header>
 
-<!-- HERO / HOME -->
 <section class="hero" id="home">
-    <div class="hero-content">
-
-        <h1>Geographic Information Systems (GIS)</h1>
-
-        <p>
-            Geographic Information Systems (GIS) is a computer-based tool used to collect,
-            store, analyze, manage and visualize spatial or geographic data. It allows users
-            to understand patterns, relationships, and trends in real-world locations through maps,
-            satellite images and spatial analysis techniques.
-        </p>
-
-        <div class="highlight-box">
-            <h2>Flooding Problem in Ifakara</h2>
-            <p>
-                Ifakara, located in Morogoro Region, Tanzania, is highly affected by seasonal and
-                flash floods. These floods are mainly caused by heavy rainfall, low elevation terrain,
-                poor drainage systems, and overflow of nearby rivers such as Kilombero River basin.
-            </p>
-        </div>
-
-        <div class="highlight-box">
-            <h2>How Often Floods Occur</h2>
-            <p>
-                Flood events in Ifakara occur frequently during the rainy seasons (March–May and
-                November–December). In some years, flooding happens multiple times within a single season,
-                making it a serious and recurring environmental challenge for residents.
-            </p>
-        </div>
-
-        <div class="highlight-box">
-            <h2>Impact on Local Communities</h2>
-            <p>
-                Flooding in Ifakara has significant impacts on human life and infrastructure.
-                It leads to destruction of houses, damage to roads and bridges, loss of agricultural
-                land, contamination of water sources, spread of diseases, and displacement of families.
-                These effects slow down economic development and increase poverty levels in the area.
-            </p>
-        </div>
-
-        <div class="highlight-box">
-            <h2>GIS Solution Approach</h2>
-            <p>
-                This project uses GIS techniques such as Digital Elevation Model (DEM) analysis,
-                river buffer analysis, and land elevation classification to identify high-risk,
-                medium-risk, and low-risk flood zones in Ifakara. The results help in decision-making
-                for urban planning and disaster risk reduction.
-            </p>
-        </div>
-
-        <a href="#map" class="btn">Explore Flood Risk Map</a>
-
-    </div>
+<div class="hero-content">
+<h1>Flood Risk Assessment Using GIS</h1>
+<p>Protecting Lives and Property Through Geospatial Technology</p>
+<a href="#about" class="btn">Explore Project</a>
+</div>
 </section>
+
+<section id="about">
+<h2 class="section-title">About the Project</h2>
+
+<div class="about">
+
+<img src="https://images.unsplash.com/photo-1547683905-f686c993aae5" alt="Flood">
+
+<div>
+<p>
+Floods are among the most destructive natural disasters worldwide.
+Geographic Information Systems (GIS) provide powerful tools for
+identifying flood-prone areas, analyzing risks, and supporting
+emergency planning.
+</p>
+
+<br>
+
+<p>
+This project demonstrates how GIS technologies are used to map
+flood hazards, assess vulnerable communities, and assist decision
+makers in protecting people, infrastructure, and valuable property.
+</p>
+
+</div>
+
+</div>
+</section>
+
+<section id="tools">
+<h2 class="section-title">GIS Tools Used</h2>
+
+<div class="tools">
+
+<div class="card">
+<h3>ArcGIS</h3>
+<p>Spatial analysis and flood susceptibility mapping.</p>
+</div>
+
+<div class="card">
+<h3>QGIS</h3>
+<p>Open-source GIS software for data visualization and mapping.</p>
+</div>
+
+<div class="card">
+<h3>Remote Sensing</h3>
+<p>Satellite imagery helps monitor flood events and land changes.</p>
+</div>
+
+<div class="card">
+<h3>Digital Elevation Model</h3>
+<p>Terrain analysis identifies low-lying flood-prone zones.</p>
+</div>
+
+<div class="card">
+<h3>GPS Survey</h3>
+<p>Collecting accurate ground data for validation.</p>
+</div>
+
+<div class="card">
+<h3>Hydrological Analysis</h3>
+<p>Understanding water flow and flood behavior.</p>
+</div>
+
+</div>
+</section>
+
+<section class="workflow" id="workflow">
+<h2 class="section-title">GIS Flood Risk Workflow</h2>
+
+<div class="steps">
+
+<div class="step">
+<h3>1. Data Collection</h3>
+<p>Gather rainfall, river, DEM and land use datasets.</p>
+</div>
+
+<div class="step">
+<h3>2. Spatial Analysis</h3>
+<p>Process flood factors using GIS tools and techniques.</p>
+</div>
+
+<div class="step">
+<h3>3. Flood Mapping</h3>
+<p>Create hazard and vulnerability maps.</p>
+</div>
+
+<div class="step">
+<h3>4. Risk Assessment</h3>
+<p>Determine areas and populations at risk.</p>
+</div>
+
+<div class="step">
+<h3>5. Decision Support</h3>
+<p>Provide recommendations for disaster management.</p>
+</div>
+
+<div class="step">
+<h3>6. Protection</h3>
+<p>Support evacuation planning and infrastructure safety.</p>
+</div>
+
+</div>
+</section>
+
+<footer>
+<p>Flood Risk GIS Portfolio | Developed by Breezy Callisto © 2026</p>
+</footer>
+
+</body>
+</html>
